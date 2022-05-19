@@ -11,6 +11,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,6 +26,7 @@ import org.tensorflow.lite.task.vision.detector.ObjectDetector;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -85,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private void setViewAndDetect(Bitmap bitmap) throws IOException {
         // Display captured image
         inputImageView.setImageBitmap(bitmap);
@@ -93,7 +94,17 @@ public class MainActivity extends AppCompatActivity {
 
         // Run object detection and display result
         // running this process in background thread
-        runObjectDetection(bitmap);
+        // also delay to show the labeled image
+        inputImageView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    runObjectDetection(bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 500);
     }
 
     private void runObjectDetection(Bitmap bitmap) throws IOException {

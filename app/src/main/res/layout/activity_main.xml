@@ -43,7 +43,8 @@
         <ImageView
             android:id="@+id/imageViewID"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:contentDescription="TODO" />
 
     </FrameLayout>
 
@@ -92,7 +93,8 @@
             android:adjustViewBounds="true"
             android:contentDescription="@null"
             android:scaleType="centerCrop"
-            android:src="@drawable/kite" />
+            android:src="@drawable/kite"
+            tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
 
     </LinearLayout>
