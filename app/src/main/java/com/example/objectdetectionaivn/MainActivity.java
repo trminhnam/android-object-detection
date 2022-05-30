@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     private void setViewAndDetect(Bitmap bitmap) throws IOException {
         // Display captured image
         inputImageView.setImageBitmap(bitmap);
